@@ -174,7 +174,7 @@ $('post').addEventListener('click', async () => {
     brandOrganic: d && $('brandOrganic').checked, brandContent: d && $('brandContent').checked,
   }) });
   const j = await r.json();
-  if (!r.ok) { $('postmsg').className = 'small err'; $('postmsg').textContent = 'Failed: ' + (j.error?.message || j.error || r.status); return; }
+  if (!r.ok) { $('postmsg').className = 'small err'; $('postmsg').textContent = 'Failed: ' + (j.error?.code ? j.error.code + ' - ' : '') + (j.error?.message || j.error || r.status); return; }
   $('postmsg').textContent = 'Uploaded. Waiting for TikTok to process...';
   for (let i = 0; i < 30; i++) {
     await new Promise((r) => setTimeout(r, 3000));
